@@ -37,3 +37,16 @@ export async function deleteLocalFiles(files: Array<string>) {
     fs.unlinkSync(file);
   }
 }
+
+
+// added this helper function to validate image url
+// INPUTS
+//    string: image url
+// RETURNS
+//    a Promise<boolean> true if valid url false if not valid
+export async function isImageLink (url: string):Promise<boolean> {
+  if (typeof url !== 'string') {
+    return false;
+  }
+  return (url.match(/^http[^\?]*.(jpg|jpeg|gif|png|tiff|bmp)(\?(.*))?$/gmi) !== null);
+}
